@@ -19,14 +19,14 @@ import {
     ></app-todo-item>
   `,
 })
-export class TodoListComponent implements OnInit {
+export class TodoListComponent implements OnChanges {
   @Input() todos!: Todo[];
   @Input() query!: string;
   @Output() deleteTodo = new EventEmitter<number>();
 
   result: Todo[] = [];
 
-  ngOnInit(): void {
+  ngOnChanges(changes: SimpleChanges): void {
     this.result = this.todos.filter((todo) => todo.title.includes(this.query));
   }
 
